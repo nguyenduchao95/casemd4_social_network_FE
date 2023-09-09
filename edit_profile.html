@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="bootstrap/icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white border">
+    <div class="container col-9 d-flex justify-content-between">
+        <div class="d-flex justify-content-between col-8">
+            <a class="navbar-brand" href="wall.html">
+                <img src="./img/pictogram.png" alt="" height="28">
+
+            </a>
+
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="looking for someone.."
+                       aria-label="Search">
+
+            </form>
+
+        </div>
+
+
+        <ul class="navbar-nav  mb-2 mb-lg-0">
+
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="#"><i class="bi bi-house-door-fill"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="#"><i class="bi bi-plus-square-fill"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="#"><i class="bi bi-bell-fill"></i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="#"><i class="bi bi-chat-right-dots-fill"></i></a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="./img/profile.jpg" alt="" height="30" class="rounded-circle border">
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">My Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Account Settings</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+
+    </div>
+</nav>
+<div class="container col-9 rounded-0 d-flex justify-content-between">
+    <div class="col-12 bg-white border rounded p-4 mt-4 shadow-sm">
+        <div>
+            <div class="d-flex justify-content-center">
+
+
+            </div>
+            <h1 class="h5 mb-3 fw-normal">Edit Profile</h1>
+            <div class="form-floating mt-1 col-6">
+                <img class="img-thumbnail my-3" style="height:150px;" id="imageNow">
+                <div class="mb-3">
+                    <label for="imageE" class="form-label">Change Profile Picture</label>
+                    <input class="form-control" type="text" id="imageE">
+                    <button type="button" onclick="showImg()">Show Image</button>
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="form-floating mt-1 col-6 ">
+                    <input type="text" class="form-control rounded-0" id="firstNameE" placeholder="username">
+                    <label for="firstNameE">first name</label>
+                </div>
+                <div class="form-floating mt-1 col-6">
+                    <input type="text" id="lastNameE" class="form-control rounded-0" placeholder="lastName">
+                    <label for="lastNameE">last name</label>
+                </div>
+            </div>
+            <div class="d-flex gap-3 my-3">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="genderE" id="exampleRadios1"
+                           value="true" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                        Male
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="genderE" id="exampleRadios3"
+                           value="false">
+                    <label class="form-check-label" for="exampleRadios3">
+                        Female
+                    </label>
+                </div>
+
+            </div>
+            <div class="form-floating mt-1">
+                <input type="email" id="emailE" class="form-control rounded-0" placeholder="username/email">
+                <label for="emailE">email</label>
+            </div>
+            <div class="form-floating mt-1">
+                <input type="email" id="usernameE" class="form-control rounded-0" placeholder="username/email" readonly>
+                <label for="usernameE">username</label>
+            </div>
+
+            <div class="mt-3 d-flex justify-content-between align-items-center">
+                <button class="btn btn-primary" type="submit" onclick="editProfile()">Update Profile</button>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+
+
+<script>
+    function showImg() {
+        let imgUp = document.getElementById("imageE").value;
+        if (imgUp) {
+            document.getElementById('imageNow').src = imgUp;
+        }
+    }
+
+    let user = JSON.parse(localStorage.getItem("user"));
+
+    function showUserEdit() {
+        document.getElementById("firstNameE").value = user.firstName;
+        document.getElementById("lastNameE").value = user.lastName;
+        document.getElementById("emailE").value = user.email;
+        document.getElementById("usernameE").value = user.username;
+        document.getElementById("imageNow").src = user.image;
+    }
+
+    showUserEdit();
+
+    function editProfile() {
+
+        let id = user.id;
+        let firstName = document.getElementById("firstNameE").value;
+        let lastName = document.getElementById("lastNameE").value;
+        let email = document.getElementById("emailE").value;
+        let gender = document.querySelector('input[name="genderE"]:checked').value;
+        let username = user.username;
+        let image = document.getElementById("imageE").value;
+
+        let userE = { id ,firstName, lastName, gender ,  username ,email, image  };
+
+        $.ajax({
+            type: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                "Authorization": "Bearer " + user.token
+            },
+            url: 'http://localhost:8080/users/edit',
+            data: JSON.stringify(userE),
+            success: function (data) {
+                console.log(data)
+                if (data != null) {
+                    console.log(data);
+                    user.firstName = firstName;
+                    user.lastName = lastName;
+                    user.email = email;
+                    user.gender = gender;
+                    user.image =image;
+                    localStorage.setItem("user" , JSON.stringify(user));
+                    window.location.href = "wall.html";
+                }
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+
+</script>
