@@ -1,13 +1,25 @@
 function init() {
-    let userId = 3;
+    let user = {
+        id: 3,
+        firstName: "Test",
+        lastName: "Kumar",
+        gender: true,
+        username: "testman",
+        email: "test@gmail.com",
+        password: "e10adc3949ba59abbe56e057f20f883e",
+        image: "girl-anime-wallaper-25.jpg",
+        created_at: "2021-11-30T03:45:35",
+        updated_at: "2021-11-30T03:50:33"
+    };
     $.ajax({
-        url: "http://localhost:8080/posts/" + userId,
+        url: "http://localhost:8080/posts/" + user.id,
         type: "GET",
         dataType: "json",
         success: function (posts) {
-            showPosts(posts, userId);
+            showPosts(posts, user.id).then();
         }
     })
+    showImageAndNameUserLogin(user);
 }
 
 async function showPosts(posts, userIdLogin) {
@@ -18,12 +30,13 @@ async function showPosts(posts, userIdLogin) {
         let comments = await getComments(post.id);
         let elapsedHTML = pastTime(post.created_at);
         let checkLiked = await checkLikedPost(post.id, 3);
-        let image = "../img/posts/" + post.img;
+        let imagePost = "../img/posts/" + post.img;
+        let imageUser = "../img/profile/" + post.user.image;
         htmls += `
                    <div class="card mt-4">
                         <div class="card-title d-flex justify-content-between  align-items-center">
                             <div class="d-flex align-items-center p-2">
-                                <img src="${post.user.image}" alt="" height="30" class="rounded-circle border">&nbsp;&nbsp;
+                                <img src="${imageUser}" alt="" height="30" class="rounded-circle border">&nbsp;&nbsp;
                                 <div class="d-flex flex-column">
                                     <span class="fw-bold">${name}</span>
                                     <span style="font-size: 13px">
@@ -44,21 +57,21 @@ async function showPosts(posts, userIdLogin) {
         }
                             </ul>
                         </div>
-                        <img src="${image}" class="" alt="...">
-                        <h4 class="p-2 border-bottom d-flex align-items-center">
+                        <img src="${imagePost}" class="" alt="...">
+                        <h4 class="p-2 m-0 border-bottom d-flex align-items-center">
                             <i class="${checkLiked ? 'bi bi-heart-fill pointer' : 'bi bi-heart pointer'}" onclick="handleAction(this, ${post.id}, ${userIdLogin})"></i>
                             <span class="ms-2 text-secondary fs-5 quantity-like-${post.id}">${likes}</span>
                             <i class="bi bi-chat-left ms-5 pointer" onclick="showComment(${post.id})"></i>
                             <span class="ms-2 text-secondary fs-5 quantity-comment-${post.id}">${comments.length}</span>
                         </h4>
-                        <div class="card-body">
+                        <div class="card-body card-body-${post.id}">
                             ${post.content}
                         </div>
                         
-                        <div class="card-comment-${post.id}"></div>
+                        <div id="card-comment-${post.id}"></div>
             
                         <div class="input-group p-2 border-top">
-                            <input type="text" class="form-control rounded-0 border-0 shadow-none input-comment-${post.id}" placeholder="Viết bình luận..." >
+                            <input type="text" class="form-control rounded-0 border-0 shadow-none" id="input-comment-${post.id}" placeholder="Viết bình luận..." >
                             <button class="btn btn-outline-primary rounded-0 border-0" onclick="postComment(${post.id})">Gửi</button>
                         </div>
                    </div>
@@ -138,16 +151,16 @@ function handleAction(el, postId, userId) {
 }
 
 async function showComment(postId) {
-    //call api
-    let comments = await getComments(postId)
+    let comments = await getComments(postId);
     if (comments.length) {
-        let htmls = comments.map((comment, index) => {
+        let htmls = comments.map(comment => {
             let elapsedHTML = pastTime(comment.created_at);
             let name = comment.user.firstName + " " + comment.user.lastName;
+            let imageUser = "../img/profile/" + comment.user.image;
             return `
                     <div class="card-title d-flex justify-content-between align-items-center mb-0">
                         <div class="d-flex p-2">
-                            <img src="${comment.user.image}" alt="" height="30" class="rounded-circle border">
+                            <img src="${imageUser}" alt="" height="30" class="rounded-circle border">
                             <div class="d-flex flex-column">
                                 <div class="ms-2 p-2" style="background-color: #f1f1f1; border-radius: 6px">
                                     <h6 style="font-size: small;">${name}</h6>
@@ -164,18 +177,19 @@ async function showComment(postId) {
                     </div>
             `
         })
-        $('.card-comment-' + postId).html(htmls);
-        $('.card-comment-' + postId).addClass("border-top");
+        $('#card-comment-' + postId).html(htmls);
+        $('.card-body-' + postId).addClass("border-bottom");
+    } else {
+        $('#card-comment-' + postId).html("");
     }
 }
 
 function postComment(postId) {
-    let comment = $('.input-comment-' + postId).val().trim();
-    if (comment) {
+    let comment = $('#input-comment-' + postId).val();
+    if (comment.trim()) {
         let tzOffset = (new Date()).getTimezoneOffset() * 60000;
         let localISOTime = (new Date(Date.now() - tzOffset)).toISOString().slice(0, -1);
-        let data = {comment, user: {id: 3}, created_at: localISOTime}
-        console.log(data)
+        let data = {comment, user: {id: 3}, created_at: localISOTime};
         $.ajax({
             url: "http://localhost:8080/cmt/" + postId,
             type: "POST",
@@ -183,12 +197,12 @@ function postComment(postId) {
             contentType: "application/json",
             data: JSON.stringify(data),
             success: async function (res) {
-                showComment(postId);
+                showComment(postId).then();
                 let comments = await getComments(postId);
                 $('.quantity-comment-' + postId).text(comments.length);
             }
         })
-        $('.input-comment-' + postId).val("");
+        $('#input-comment-' + postId).val("");
     }
 }
 
@@ -272,24 +286,22 @@ function confirmDelete(postId) {
     })
 }
 
+function showImageAndNameUserLogin(user) {
+    let name = user.firstName + " " + user.lastName;
+    let imageUser = "../img/profile/" + user.image;
+    let htmls = `
+                            <div><img src="${imageUser}" alt="" height="60" class="rounded-circle border">
+                            </div>
+                            <div>&nbsp;&nbsp;&nbsp;</div>
+                            <div class="d-flex flex-column justify-content-center">
+                                <h6 style="margin: 0;">${name}</h6>
+                                <p style="margin:0;" class="text-muted">${user.username}</p>
+                            </div>
+                        `
+    $('.profile-user').html(htmls);
+}
 
-function save(userId) {
-    let form = new FormData();
-    let file = $("#image-url").files[0];
-    let content = $("#content").val().trim();
-    form.append("file", file);
-    form.append("content", content);
-    $.ajax({
-        type: "Post",
-        url: "http://localhost:8080/posts/" + userId,
-        data: form,
-        contentType: false,
-        processData: false,
-        success: function (data) {
-            alert("ok")
-        },
-        error: function (err) {
-            console.log(err)
-        }
-    })
+function getParamFromCurrentURL(paramName) {
+    let url = new URL(window.location.href);
+    return url.searchParams.get(paramName);
 }

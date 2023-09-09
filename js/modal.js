@@ -43,6 +43,30 @@ function getModal() {
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="modal fade" id="modal-post-profile">
+                            <div class="modal-dialog modal-xl modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-body d-flex p-0">
+                                        <div class="col-8" style="height: 550px; overflow: hidden">
+                                            <img src="../img/posts/54_Cute-Girl-Pic.jpg" class="w-100 rounded-start image-post-profile" alt="">
+                                        </div>
+                                        <div class="col-4 d-flex flex-column">
+                                            <div class="d-flex align-items-center p-2 border-bottom profile-user"></div>
+                                            <div class="profile-post-content"></div>
+                                            <div class="flex-fill align-self-stretch overflow-auto" style="height: 100px;">
+                                                <div class="post-profile-comment"></div>
+                                            </div>
+                                            <div class="input-group p-2 border-top">
+                                                <input type="text" class="form-control rounded-0 border-0 input-post-profile shadow-none" placeholder="Viết bình luận...">
+                                                <button class="btn btn-outline-primary rounded-0 border-0 btn-post-profile" type="button">Gửi</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                        
+                                </div>
+                            </div>
+                        </div>
                        `
     $('#modal').html(htmls);
 }
@@ -73,5 +97,15 @@ function showConfirmModal() {
 
 function hideConfirmModal() {
     let modal = $("#modal-confirm");
+    bootstrap.Modal.getOrCreateInstance(modal).hide();
+}
+
+function showPostProfileModal() {
+    let modal = $("#modal-post-profile");
+    bootstrap.Modal.getOrCreateInstance(modal).show();
+}
+
+function hidePostProfileModal() {
+    let modal = $("#modal-post-profile");
     bootstrap.Modal.getOrCreateInstance(modal).hide();
 }

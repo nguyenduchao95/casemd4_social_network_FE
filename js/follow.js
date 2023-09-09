@@ -16,11 +16,11 @@ async function showUnFollowedUsers(users) {
     let htmls = '<h6 class="text-muted p-2">Bạn có thể biết họ</h6>';
     for (const user of users) {
         let name = user.firstName + " " + user.lastName;
+        let imageUser = "../img/profile/" + user.image;
         htmls += `
                         <div class="d-flex justify-content-between">
                             <div class="d-flex align-items-center p-2">
-                                <div><img src="${user.image}" alt="" height="40" class="rounded-circle border">
-                                </div>
+                                <div><img src="${imageUser}" alt="" height="40" class="rounded-circle border"></div>
                                 <div>&nbsp;&nbsp;</div>
                                 <div class="d-flex flex-column justify-content-center">
                                     <h6 style="margin: 0;font-size: small;">${name}</h6>
