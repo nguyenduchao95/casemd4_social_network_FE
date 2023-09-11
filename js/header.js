@@ -1,22 +1,11 @@
 function showHeader() {
-    let user = {
-        id: 3,
-        firstName: "Test",
-        lastName: "Kumar",
-        gender: true,
-        username: "testman",
-        email: "test@gmail.com",
-        password: "e10adc3949ba59abbe56e057f20f883e",
-        image: "girl-anime-wallaper-25.jpg",
-        created_at: "2021-11-30T03:45:35",
-        updated_at: "2021-11-30T03:50:33"
-    }
-    let imageUser = "../img/profile/" + user.image;
+    let userLogin = JSON.parse(localStorage.getItem("user"));
+    let imageUser = "../img/profile/" + userLogin.image;
     let htmls = `
                         <nav class="navbar navbar-expand-lg navbar-light bg-white border">
                             <div class="container col-9 d-flex justify-content-between">
                                 <div class="d-flex justify-content-between col-8">
-                                    <a class="navbar-brand" href="http://localhost:63343/case_social_FE/home.html">
+                                    <a class="navbar-brand" href="home.html">
                                         <img src="../img/pictogram.png" alt="" height="28">
                                     </a>
                         
@@ -27,10 +16,10 @@ function showHeader() {
                         
                                 </div>
                         
-                                <ul class="navbar-nav  mb-2 mb-lg-0">
+                                <ul class="navbar-nav mb-2 mb-lg-0">
                         
                                     <li class="nav-item">
-                                        <a class="nav-link text-dark" href="http://localhost:63343/case_social_FE/home.html" title="Trang chủ"><i class="bi bi-house-door-fill"></i></a>
+                                        <a class="nav-link text-dark" href="home.html" title="Trang chủ"><i class="bi bi-house-door-fill"></i></a>
                                     </li>
                                     <li class="nav-item">
                                         <span class="nav-link text-dark pointer" onclick="showFormAdd()" title="Đăng bài"><i class="bi bi-plus-square-fill"></i></span>
@@ -47,12 +36,12 @@ function showHeader() {
                                             <img src="${imageUser}" alt="" height="30" class="rounded-circle border">
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="http://localhost:63343/case_social_FE/profile.html">Trang cá nhân</a></li>
-                                            <li><a class="dropdown-item" href="#">Cài đặt tài khoản</a></li>
+                                            <li><a class="dropdown-item" href="profile.html">Trang cá nhân</a></li>
+                                            <li><a class="dropdown-item" href="edit_profile.html">Thay đổi thông tin</a></li>
                                             <li>
                                                 <hr class="dropdown-divider">
                                             </li>
-                                            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+                                            <li><a class="dropdown-item" href="login.html" onclick="handleLogout()">Đăng xuất</a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -63,3 +52,7 @@ function showHeader() {
 }
 
 showHeader();
+
+function handleLogout() {
+    localStorage.removeItem("user");
+}

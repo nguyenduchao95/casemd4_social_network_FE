@@ -1,3 +1,4 @@
+
 body {
     background-color: #F5F9F9;
     /* background-size: cover; */
@@ -12,20 +13,31 @@ body {
 }
 
 .dropdown-toggle::after {
-    display:none;
+    display: none;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
 }
 
-.bi.bi-heart-fill{
+.bi.bi-heart-fill {
     color: red;
 }
 
-.header{
+.header {
     position: sticky;
     top: 0;
     z-index: 10;
 }
 
+.login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.color-red{
+    color: red;
+}

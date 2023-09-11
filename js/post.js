@@ -1,25 +1,19 @@
+let userLogin = {};
+
 function init() {
-    let user = {
-        id: 3,
-        firstName: "Test",
-        lastName: "Kumar",
-        gender: true,
-        username: "testman",
-        email: "test@gmail.com",
-        password: "e10adc3949ba59abbe56e057f20f883e",
-        image: "girl-anime-wallaper-25.jpg",
-        created_at: "2021-11-30T03:45:35",
-        updated_at: "2021-11-30T03:50:33"
-    };
+    userLogin = JSON.parse(localStorage.getItem("user"));
     $.ajax({
-        url: "http://localhost:8080/posts/" + user.id,
+        url: "http://localhost:8080/posts/" + userLogin.id,
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + userLogin.token
+        },
         dataType: "json",
         success: function (posts) {
-            showPosts(posts, user.id).then();
+            showPosts(posts, userLogin.id).then();
         }
     })
-    showImageAndNameUserLogin(user);
+    showImageAndNameUserLogin(userLogin);
 }
 
 async function showPosts(posts, userIdLogin) {
@@ -29,9 +23,9 @@ async function showPosts(posts, userIdLogin) {
         let likes = await countLikes(post.id);
         let comments = await getComments(post.id);
         let elapsedHTML = pastTime(post.created_at);
-        let checkLiked = await checkLikedPost(post.id, 3);
-        let imagePost = "../img/posts/" + post.img;
-        let imageUser = "../img/profile/" + post.user.image;
+        let checkLiked = await checkLikedPost(post.id, userIdLogin);
+        let imagePost = "img/posts/" + post.img;
+        let imageUser = "img/profile/" + post.user.image;
         htmls += `
                    <div class="card mt-4">
                         <div class="card-title d-flex justify-content-between  align-items-center">
@@ -53,7 +47,8 @@ async function showPosts(posts, userIdLogin) {
                                 ${userIdLogin === post.user.id ?
             `<li class="dropdown-item pointer" onclick='showFormEdit(${JSON.stringify(post)})'><i class="bi bi-brush me-2"></i>Sửa bài viết</li><li class="dropdown-item pointer" onclick="confirmDelete(${post.id})"><i class="bi bi-trash me-2"></i>Xóa bài viết</li>`
             :
-            `<li class="dropdown-item pointer" onclick="handleHide(${post.id})"><i class="bi bi-file-earmark-excel me-2"></i>Ẩn bài viết</li><li class="dropdown-item pointer" onclick="handleUnF(${post.id})"><i class="bi bi-person-dash me-2"></i>Bỏ theo dõi</li>`
+            `<li class="dropdown-item pointer" onclick="handleHide(${post.id})"><i class="bi bi-file-earmark-excel me-2"></i>Ẩn bài viết</li>
+             <li class="dropdown-item pointer" onclick="handleFollow(${post.user.id})"><i class="bi bi-person-dash me-2"></i>Bỏ theo dõi</li>`
         }
                             </ul>
                         </div>
@@ -107,10 +102,10 @@ function countLikes(postId) {
     return $.ajax({
         url: `http://localhost:8080/likes/${postId}/count`,
         type: "GET",
-        dataType: "json",
-        success: function (count) {
-
-        }
+        headers: {
+            "Authorization": "Bearer " + userLogin.token
+        },
+        dataType: "json"
     })
 }
 
@@ -118,6 +113,9 @@ function checkLikedPost(postId, userId) {
     return $.ajax({
         url: `http://localhost:8080/likes/${postId}/${userId}`,
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + userLogin.token
+        },
         dataType: "json"
     })
 }
@@ -126,6 +124,9 @@ function getComments(postId) {
     return $.ajax({
         url: `http://localhost:8080/cmt/${postId}`,
         type: "GET",
+        headers: {
+            "Authorization": "Bearer " + userLogin.token
+        },
         dataType: "json"
     })
 }
@@ -140,6 +141,9 @@ function handleAction(el, postId, userId) {
     $.ajax({
         url: `http://localhost:8080/likes/${postId}/${userId}`,
         type: "POST",
+        headers: {
+            "Authorization": "Bearer " + userLogin.token
+        },
         success: async function (res) {
             let likes = await countLikes(postId);
             $('.quantity-like-' + postId).text(likes);
@@ -156,7 +160,7 @@ async function showComment(postId) {
         let htmls = comments.map(comment => {
             let elapsedHTML = pastTime(comment.created_at);
             let name = comment.user.firstName + " " + comment.user.lastName;
-            let imageUser = "../img/profile/" + comment.user.image;
+            let imageUser = "img/profile/" + comment.user.image;
             return `
                     <div class="card-title d-flex justify-content-between align-items-center mb-0">
                         <div class="d-flex p-2">
@@ -189,10 +193,13 @@ function postComment(postId) {
     if (comment.trim()) {
         let tzOffset = (new Date()).getTimezoneOffset() * 60000;
         let localISOTime = (new Date(Date.now() - tzOffset)).toISOString().slice(0, -1);
-        let data = {comment, user: {id: 3}, created_at: localISOTime};
+        let data = {comment, user: {id: userLogin.id}, created_at: localISOTime};
         $.ajax({
             url: "http://localhost:8080/cmt/" + postId,
             type: "POST",
+            headers: {
+                "Authorization": "Bearer " + userLogin.token
+            },
             dataType: "json",
             contentType: "application/json",
             data: JSON.stringify(data),
@@ -210,43 +217,49 @@ function handleSavePost() {
     let form = new FormData();
     let file = document.getElementById("image-url").files[0];
     let content = $("#content").val().trim();
-    if (!file) $('#image-url').focus();
-    else if (!content) $('#content').focus();
+    if (!content) $('#content').focus();
 
-    if (file && content) {
-        if (jQuery.isEmptyObject(post)) {
+
+    if (jQuery.isEmptyObject(post)) {
+        if (file && content) {
             let tzOffset = (new Date()).getTimezoneOffset() * 60000;
             let localISOTime = (new Date(Date.now() - tzOffset)).toISOString().slice(0, -1);
 
             form.append("file", file);
             form.append("content", content);
             form.append("created_at", localISOTime);
-
             $.ajax({
-                type: "Post",
-                url: "http://localhost:8080/posts/" + 3,
+                type: "POST",
+                url: "http://localhost:8080/posts/" + userLogin.id,
+                headers: {
+                    "Authorization": "Bearer " + userLogin.token
+                },
                 data: form,
                 contentType: false,
                 processData: false,
                 success: function (res) {
                     init();
-                }
-            })
-        } else {
-            let data = {id: post.id, content, user: {id: 3}, created_at: post.created_at};
-
-            $.ajax({
-                url: "http://localhost:8080/posts/" + post.id,
-                type: "PUT",
-                dataType: "json",
-                contentType: "application/json",
-                data: JSON.stringify(data),
-                success: function (res) {
-                    init();
+                    hidePostModal();
                 }
             })
         }
-        hidePostModal();
+    } else {
+        form.append("file", file);
+        form.append("content", content);
+        $.ajax({
+            url: "http://localhost:8080/posts/" + post.id,
+            type: "PUT",
+            headers: {
+                "Authorization": "Bearer " + userLogin.token
+            },
+            contentType: false,
+            processData: false,
+            data: form,
+            success: function (res) {
+                init();
+                hidePostModal();
+            }
+        })
     }
 }
 
@@ -257,9 +270,8 @@ function showFormEdit(postEdit) {
     showPostModal();
     $('.modal-title-post').text("Sửa bài viết");
     $('.btn-save').text("Lưu");
-    $('#image-url').val(postEdit.img);
     $('#content').val(postEdit.content);
-    $(".show-img").attr("src", postEdit.img);
+    $(".show-img").attr("src", "img/posts/" + postEdit.img);
 }
 
 function showFormAdd() {
@@ -269,7 +281,7 @@ function showFormAdd() {
     $('.btn-save').text("Đăng");
     $('#image-url').val("");
     $('#content').val("");
-    $(".show-img").attr("src", "../img/icon-add-image.png");
+    $(".show-img").attr("src", "img/icon-add-image.png");
 }
 
 function confirmDelete(postId) {
@@ -278,6 +290,9 @@ function confirmDelete(postId) {
         $.ajax({
             url: "http://localhost:8080/posts/" + postId,
             type: "DELETE",
+            headers: {
+                "Authorization": "Bearer " + userLogin.token
+            },
             success: function (res) {
                 init();
             }
@@ -288,7 +303,7 @@ function confirmDelete(postId) {
 
 function showImageAndNameUserLogin(user) {
     let name = user.firstName + " " + user.lastName;
-    let imageUser = "../img/profile/" + user.image;
+    let imageUser = "img/profile/" + user.image;
     let htmls = `
                             <div><img src="${imageUser}" alt="" height="60" class="rounded-circle border">
                             </div>
@@ -299,9 +314,4 @@ function showImageAndNameUserLogin(user) {
                             </div>
                         `
     $('.profile-user').html(htmls);
-}
-
-function getParamFromCurrentURL(paramName) {
-    let url = new URL(window.location.href);
-    return url.searchParams.get(paramName);
 }

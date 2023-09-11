@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/case_social_FE.iml" filepath="$PROJECT_DIR$/.idea/case_social_FE.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/casemd4_social_network_frontend.iml" filepath="$PROJECT_DIR$/.idea/casemd4_social_network_frontend.iml" />
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
     </modules>
   </component>
 </project>

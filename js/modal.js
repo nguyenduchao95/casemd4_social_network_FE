@@ -49,10 +49,10 @@ function getModal() {
                                 <div class="modal-content">
                                     <div class="modal-body d-flex p-0">
                                         <div class="col-8" style="height: 550px; overflow: hidden">
-                                            <img src="../img/posts/54_Cute-Girl-Pic.jpg" class="w-100 rounded-start image-post-profile" alt="">
+                                            <img src="../img/posts/54_Cute-Girl-Pic.jpg" class="w-100 h-100 rounded-start image-post-profile" alt="">
                                         </div>
                                         <div class="col-4 d-flex flex-column">
-                                            <div class="d-flex align-items-center p-2 border-bottom profile-user"></div>
+                                            <div class="d-flex align-items-center p-2 border-bottom profile-user-post"></div>
                                             <div class="profile-post-content"></div>
                                             <div class="flex-fill align-self-stretch overflow-auto" style="height: 100px;">
                                                 <div class="post-profile-comment"></div>

@@ -420,6 +420,10 @@
   "cloud-fog2": 62114,
   "cloud-hail-fill": 62115,
   "cloud-hail": 62116,
+<<<<<<< HEAD
+=======
+  "cloud-haze-1": 62117,
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
   "cloud-haze-fill": 62118,
   "cloud-haze": 62119,
   "cloud-haze2-fill": 62120,
@@ -1415,16 +1419,33 @@
   "dpad": 63111,
   "ear-fill": 63112,
   "ear": 63113,
+<<<<<<< HEAD
   "envelope-check-fill": 63115,
   "envelope-check": 63116,
   "envelope-dash-fill": 63118,
   "envelope-dash": 63119,
+=======
+  "envelope-check-1": 63114,
+  "envelope-check-fill": 63115,
+  "envelope-check": 63116,
+  "envelope-dash-1": 63117,
+  "envelope-dash-fill": 63118,
+  "envelope-dash": 63119,
+  "envelope-exclamation-1": 63120,
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
   "envelope-exclamation-fill": 63121,
   "envelope-exclamation": 63122,
   "envelope-plus-fill": 63123,
   "envelope-plus": 63124,
+<<<<<<< HEAD
   "envelope-slash-fill": 63126,
   "envelope-slash": 63127,
+=======
+  "envelope-slash-1": 63125,
+  "envelope-slash-fill": 63126,
+  "envelope-slash": 63127,
+  "envelope-x-1": 63128,
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
   "envelope-x-fill": 63129,
   "envelope-x": 63130,
   "explicit-fill": 63131,
@@ -1434,6 +1455,11 @@
   "list-columns-reverse": 63135,
   "list-columns": 63136,
   "meta": 63137,
+<<<<<<< HEAD
+=======
+  "mortorboard-fill": 63138,
+  "mortorboard": 63139,
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
   "nintendo-switch": 63140,
   "pc-display-horizontal": 63141,
   "pc-display": 63142,
@@ -1452,6 +1478,10 @@
   "send-check": 63155,
   "send-dash-fill": 63156,
   "send-dash": 63157,
+<<<<<<< HEAD
+=======
+  "send-exclamation-1": 63158,
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
   "send-exclamation-fill": 63159,
   "send-exclamation": 63160,
   "send-fill": 63161,
@@ -1463,14 +1493,23 @@
   "send-x": 63167,
   "send": 63168,
   "steam": 63169,
+<<<<<<< HEAD
+=======
+  "terminal-dash-1": 63170,
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
   "terminal-dash": 63171,
   "terminal-plus": 63172,
   "terminal-split": 63173,
   "ticket-detailed-fill": 63174,
   "ticket-detailed": 63175,
   "ticket-fill": 63176,
+<<<<<<< HEAD
   "ticket-perforated-fill": 63177,
   "ticket-perforated": 63178,
+=======
+  "ticket-perferated-fill": 63177,
+  "ticket-perferated": 63178,
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
   "ticket": 63179,
   "tiktok": 63180,
   "window-dash": 63181,
@@ -1492,6 +1531,10 @@
   "usb-symbol": 63197,
   "usb": 63198,
   "boombox-fill": 63199,
+<<<<<<< HEAD
+=======
+  "displayport-1": 63200,
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
   "displayport": 63201,
   "gpu-card": 63202,
   "memory": 63203,
@@ -1504,6 +1547,11 @@
   "pci-card": 63210,
   "router-fill": 63211,
   "router": 63212,
+<<<<<<< HEAD
+=======
+  "ssd-fill": 63213,
+  "ssd": 63214,
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
   "thunderbolt-fill": 63215,
   "thunderbolt": 63216,
   "usb-drive-fill": 63217,
@@ -1520,6 +1568,7 @@
   "displayport-fill": 63228,
   "mortarboard-fill": 63229,
   "mortarboard": 63230,
+<<<<<<< HEAD
   "terminal-x": 63231,
   "arrow-through-heart-fill": 63232,
   "arrow-through-heart": 63233,
@@ -1952,4 +2001,7 @@
   "sina-weibo": 63690,
   "tencent-qq": 63691,
   "wikipedia": 63692
+=======
+  "terminal-x": 63231
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*!
  * Bootstrap Icons v1.10.5 (https://icons.getbootstrap.com/)
  * Copyright 2019-2023 The Bootstrap Authors
@@ -9,6 +10,12 @@
   font-family: "bootstrap-icons";
   src: url("./fonts/bootstrap-icons.woff2?1fa40e8900654d2863d011707b9fb6f2") format("woff2"),
 url("./fonts/bootstrap-icons.woff?1fa40e8900654d2863d011707b9fb6f2") format("woff");
+=======
+@font-face {
+  font-family: "bootstrap-icons";
+  src: url("./fonts/bootstrap-icons.woff2?a74547b2f0863226942ff8ded57db345") format("woff2"),
+url("./fonts/bootstrap-icons.woff?a74547b2f0863226942ff8ded57db345") format("woff");
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
 }
 
 .bi::before,
@@ -447,6 +454,10 @@ url("./fonts/bootstrap-icons.woff?1fa40e8900654d2863d011707b9fb6f2") format("wof
 .bi-cloud-fog2::before { content: "\f2a2"; }
 .bi-cloud-hail-fill::before { content: "\f2a3"; }
 .bi-cloud-hail::before { content: "\f2a4"; }
+<<<<<<< HEAD
+=======
+.bi-cloud-haze-1::before { content: "\f2a5"; }
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
 .bi-cloud-haze-fill::before { content: "\f2a6"; }
 .bi-cloud-haze::before { content: "\f2a7"; }
 .bi-cloud-haze2-fill::before { content: "\f2a8"; }
@@ -1442,16 +1453,33 @@ url("./fonts/bootstrap-icons.woff?1fa40e8900654d2863d011707b9fb6f2") format("wof
 .bi-dpad::before { content: "\f687"; }
 .bi-ear-fill::before { content: "\f688"; }
 .bi-ear::before { content: "\f689"; }
+<<<<<<< HEAD
 .bi-envelope-check-fill::before { content: "\f68b"; }
 .bi-envelope-check::before { content: "\f68c"; }
 .bi-envelope-dash-fill::before { content: "\f68e"; }
 .bi-envelope-dash::before { content: "\f68f"; }
+=======
+.bi-envelope-check-1::before { content: "\f68a"; }
+.bi-envelope-check-fill::before { content: "\f68b"; }
+.bi-envelope-check::before { content: "\f68c"; }
+.bi-envelope-dash-1::before { content: "\f68d"; }
+.bi-envelope-dash-fill::before { content: "\f68e"; }
+.bi-envelope-dash::before { content: "\f68f"; }
+.bi-envelope-exclamation-1::before { content: "\f690"; }
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
 .bi-envelope-exclamation-fill::before { content: "\f691"; }
 .bi-envelope-exclamation::before { content: "\f692"; }
 .bi-envelope-plus-fill::before { content: "\f693"; }
 .bi-envelope-plus::before { content: "\f694"; }
+<<<<<<< HEAD
 .bi-envelope-slash-fill::before { content: "\f696"; }
 .bi-envelope-slash::before { content: "\f697"; }
+=======
+.bi-envelope-slash-1::before { content: "\f695"; }
+.bi-envelope-slash-fill::before { content: "\f696"; }
+.bi-envelope-slash::before { content: "\f697"; }
+.bi-envelope-x-1::before { content: "\f698"; }
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
 .bi-envelope-x-fill::before { content: "\f699"; }
 .bi-envelope-x::before { content: "\f69a"; }
 .bi-explicit-fill::before { content: "\f69b"; }
@@ -1461,6 +1489,11 @@ url("./fonts/bootstrap-icons.woff?1fa40e8900654d2863d011707b9fb6f2") format("wof
 .bi-list-columns-reverse::before { content: "\f69f"; }
 .bi-list-columns::before { content: "\f6a0"; }
 .bi-meta::before { content: "\f6a1"; }
+<<<<<<< HEAD
+=======
+.bi-mortorboard-fill::before { content: "\f6a2"; }
+.bi-mortorboard::before { content: "\f6a3"; }
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
 .bi-nintendo-switch::before { content: "\f6a4"; }
 .bi-pc-display-horizontal::before { content: "\f6a5"; }
 .bi-pc-display::before { content: "\f6a6"; }
@@ -1479,6 +1512,10 @@ url("./fonts/bootstrap-icons.woff?1fa40e8900654d2863d011707b9fb6f2") format("wof
 .bi-send-check::before { content: "\f6b3"; }
 .bi-send-dash-fill::before { content: "\f6b4"; }
 .bi-send-dash::before { content: "\f6b5"; }
+<<<<<<< HEAD
+=======
+.bi-send-exclamation-1::before { content: "\f6b6"; }
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
 .bi-send-exclamation-fill::before { content: "\f6b7"; }
 .bi-send-exclamation::before { content: "\f6b8"; }
 .bi-send-fill::before { content: "\f6b9"; }
@@ -1490,14 +1527,23 @@ url("./fonts/bootstrap-icons.woff?1fa40e8900654d2863d011707b9fb6f2") format("wof
 .bi-send-x::before { content: "\f6bf"; }
 .bi-send::before { content: "\f6c0"; }
 .bi-steam::before { content: "\f6c1"; }
+<<<<<<< HEAD
+=======
+.bi-terminal-dash-1::before { content: "\f6c2"; }
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
 .bi-terminal-dash::before { content: "\f6c3"; }
 .bi-terminal-plus::before { content: "\f6c4"; }
 .bi-terminal-split::before { content: "\f6c5"; }
 .bi-ticket-detailed-fill::before { content: "\f6c6"; }
 .bi-ticket-detailed::before { content: "\f6c7"; }
 .bi-ticket-fill::before { content: "\f6c8"; }
+<<<<<<< HEAD
 .bi-ticket-perforated-fill::before { content: "\f6c9"; }
 .bi-ticket-perforated::before { content: "\f6ca"; }
+=======
+.bi-ticket-perferated-fill::before { content: "\f6c9"; }
+.bi-ticket-perferated::before { content: "\f6ca"; }
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
 .bi-ticket::before { content: "\f6cb"; }
 .bi-tiktok::before { content: "\f6cc"; }
 .bi-window-dash::before { content: "\f6cd"; }
@@ -1519,6 +1565,10 @@ url("./fonts/bootstrap-icons.woff?1fa40e8900654d2863d011707b9fb6f2") format("wof
 .bi-usb-symbol::before { content: "\f6dd"; }
 .bi-usb::before { content: "\f6de"; }
 .bi-boombox-fill::before { content: "\f6df"; }
+<<<<<<< HEAD
+=======
+.bi-displayport-1::before { content: "\f6e0"; }
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
 .bi-displayport::before { content: "\f6e1"; }
 .bi-gpu-card::before { content: "\f6e2"; }
 .bi-memory::before { content: "\f6e3"; }
@@ -1531,6 +1581,11 @@ url("./fonts/bootstrap-icons.woff?1fa40e8900654d2863d011707b9fb6f2") format("wof
 .bi-pci-card::before { content: "\f6ea"; }
 .bi-router-fill::before { content: "\f6eb"; }
 .bi-router::before { content: "\f6ec"; }
+<<<<<<< HEAD
+=======
+.bi-ssd-fill::before { content: "\f6ed"; }
+.bi-ssd::before { content: "\f6ee"; }
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
 .bi-thunderbolt-fill::before { content: "\f6ef"; }
 .bi-thunderbolt::before { content: "\f6f0"; }
 .bi-usb-drive-fill::before { content: "\f6f1"; }
@@ -1548,6 +1603,7 @@ url("./fonts/bootstrap-icons.woff?1fa40e8900654d2863d011707b9fb6f2") format("wof
 .bi-mortarboard-fill::before { content: "\f6fd"; }
 .bi-mortarboard::before { content: "\f6fe"; }
 .bi-terminal-x::before { content: "\f6ff"; }
+<<<<<<< HEAD
 .bi-arrow-through-heart-fill::before { content: "\f700"; }
 .bi-arrow-through-heart::before { content: "\f701"; }
 .bi-badge-sd-fill::before { content: "\f702"; }
@@ -1979,3 +2035,5 @@ url("./fonts/bootstrap-icons.woff?1fa40e8900654d2863d011707b9fb6f2") format("wof
 .bi-sina-weibo::before { content: "\f8ca"; }
 .bi-tencent-qq::before { content: "\f8cb"; }
 .bi-wikipedia::before { content: "\f8cc"; }
+=======
+>>>>>>> e9039fa914912668d639a1ed93ca0038e601b87a
